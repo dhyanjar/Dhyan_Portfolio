@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian-bg: var(--theme-bg);
+  --color-obsidian-surface: var(--theme-surface);
+  --color-obsidian-surface-hover: var(--theme-surface-hover);
+  --color-obsidian-border: var(--theme-border);
+  --color-obsidian-text: var(--theme-text);
+  --color-obsidian-muted: var(--theme-muted);
+  --color-obsidian-accent: var(--theme-accent);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  --theme-bg: #050505;
+  --theme-surface: #121215;
+  --theme-surface-hover: #18181B;
+  --theme-border: #27272A;
+  --theme-text: #FAFAFA;
+  --theme-muted: #71717A;
+  --theme-accent: #E4E4E7;
+  --theme-grid: rgba(255, 255, 255, 0.03);
+}
+
+.light {
+  --theme-bg: #FAFAFA;
+  --theme-surface: #F4F4F5;
+  --theme-surface-hover: #E4E4E7;
+  --theme-border: #D4D4D8;
+  --theme-text: #050505;
+  --theme-muted: #52525B;
+  --theme-accent: #18181B;
+  --theme-grid: rgba(0, 0, 0, 0.05);
+}
+
+body {
+  @apply bg-obsidian-bg text-obsidian-text font-body antialiased selection:bg-obsidian-surface-hover selection:text-obsidian-text;
+}
+
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"], input, select, textarea {
+    cursor: none;
+  }
+}
+
+.bg-grid-pattern {
+  background-size: 48px 48px;
+  background-image: linear-gradient(to right, var(--theme-grid) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--theme-grid) 1px, transparent 1px);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
