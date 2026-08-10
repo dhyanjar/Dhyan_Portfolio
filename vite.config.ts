@@ -6,10 +6,17 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     base: '/Dhyan_Portfolio/',
+    root: 'src',
+    envDir: '..',
+    publicDir: '../public',
+    build: {
+      emptyOutDir: true,
+      outDir: '../dist',
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(__dirname, 'src'),
       },
     },
     server: {
