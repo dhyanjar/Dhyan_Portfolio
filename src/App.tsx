@@ -18,9 +18,19 @@ import { CustomCursor } from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
 import { Background3D } from './components/Background3D';
 
+const THEME_STORAGE_KEY = 'dhyan-portfolio-theme';
+
+function getInitialLightMode() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY) !== 'dark';
+  } catch (error) {
+    return true;
+  }
+}
+
 export default function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(false);
+  const [isLightMode, setIsLightMode] = useState(getInitialLightMode);
   
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -34,6 +44,12 @@ export default function App() {
       document.documentElement.classList.add('light');
     } else {
       document.documentElement.classList.remove('light');
+    }
+
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, isLightMode ? 'light' : 'dark');
+    } catch (error) {
+      // Ignore storage failures so the theme toggle still works for the session.
     }
   }, [isLightMode]);
 
@@ -56,7 +72,7 @@ export default function App() {
         <Navbar 
           onOpenExperience={() => setSidebarOpen(true)} 
           isLightMode={isLightMode}
-          toggleTheme={() => setIsLightMode(!isLightMode)}
+          toggleTheme={() => setIsLightMode((currentMode) => !currentMode)}
         />
         <Hero />
         <Metrics />
@@ -74,4 +90,3 @@ export default function App() {
     </div>
   );
 }
-
