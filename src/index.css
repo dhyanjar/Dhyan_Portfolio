@@ -49,11 +49,6 @@ body {
   }
 }
 
-.bg-grid-pattern {
-  background-size: 48px 48px;
-  background-image: linear-gradient(to right, var(--theme-grid) 1px, transparent 1px),
-                    linear-gradient(to bottom, var(--theme-grid) 1px, transparent 1px);
-}
 
 html.lenis, html.lenis body {
   height: auto;

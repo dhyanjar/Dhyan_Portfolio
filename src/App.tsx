@@ -15,10 +15,15 @@ import { Footer } from './components/Footer';
 import { ExperienceSidebar } from './components/ExperienceSidebar';
 import { CustomCursor } from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
+import { Background3D } from './components/Background3D';
+
+const THEME_STORAGE_KEY = 'dhyan-portfolio-theme';
 
 export default function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState(() => {
+    return localStorage.getItem(THEME_STORAGE_KEY) !== 'dark';
+  });
 
   useEffect(() => {
     if (isLightMode) {
@@ -26,30 +31,34 @@ export default function App() {
     } else {
       document.documentElement.classList.remove('light');
     }
+
+    localStorage.setItem(THEME_STORAGE_KEY, isLightMode ? 'light' : 'dark');
   }, [isLightMode]);
 
   return (
-    <div className="min-h-screen bg-obsidian-bg text-obsidian-text transition-colors duration-300">
-      <SmoothScroll />
-      <CustomCursor />
-      <Navbar 
-        onOpenExperience={() => setSidebarOpen(true)} 
-        isLightMode={isLightMode}
-        toggleTheme={() => setIsLightMode(!isLightMode)}
-      />
-      <Hero />
-      <Metrics />
-      <AgentArch />
-      <ExecutionLog onOpenExperience={() => setSidebarOpen(true)} />
-      <Education />
-      <TechStack />
-      <Footer />
-      
-      <ExperienceSidebar 
-        isOpen={isSidebarOpen} 
-        onClose={() => setSidebarOpen(false)} 
-      />
+    <div className="min-h-screen bg-obsidian-bg text-obsidian-text transition-colors duration-300 relative">
+      <Background3D isLightMode={isLightMode} />
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <SmoothScroll />
+        <CustomCursor />
+        <Navbar 
+          onOpenExperience={() => setSidebarOpen(true)} 
+          isLightMode={isLightMode}
+          toggleTheme={() => setIsLightMode(!isLightMode)}
+        />
+        <Hero />
+        <Metrics />
+        <AgentArch />
+        <ExecutionLog onOpenExperience={() => setSidebarOpen(true)} />
+        <Education />
+        <TechStack />
+        <Footer />
+        
+        <ExperienceSidebar 
+          isOpen={isSidebarOpen} 
+          onClose={() => setSidebarOpen(false)} 
+        />
+      </div>
     </div>
   );
 }
-

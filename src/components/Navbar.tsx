@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Terminal, Sun, Moon, Briefcase, Download } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { RESUME_URL } from '../constants';
 
 interface NavbarProps {
   onOpenExperience: () => void;
@@ -52,7 +53,7 @@ export function Navbar({ onOpenExperience, isLightMode, toggleTheme }: NavbarPro
           </button>
 
           <a 
-            href="/Dhyan_Jariwala_Resume.pdf" 
+            href={RESUME_URL}
             download 
             className="nav-btn hidden md:flex items-center gap-2 p-2 border border-obsidian-border hover:bg-obsidian-surface-hover transition-colors duration-300 cursor-pointer text-obsidian-muted hover:text-obsidian-text font-mono text-[10px] uppercase tracking-widest"
           >

@@ -55,7 +55,6 @@ export function AgentArch() {
 
   return (
     <section ref={container} className="py-[80px] md:py-[120px] border-b border-obsidian-border relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-[20px] md:px-[64px] relative z-10">
         <h2 className="font-display text-[24px] md:text-[32px] font-semibold uppercase tracking-tight mb-8 md:mb-12">
           <SplitText text="Agent_Arch" className="section-title" />
