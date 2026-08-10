@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ParticleWave() {
+function ParticleWave({ isLightMode }: { isLightMode: boolean }) {
   const ref = useRef<THREE.Points>(null);
   
   const count = 3000;
@@ -29,12 +29,12 @@ function ParticleWave() {
 
   return (
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-      <PointMaterial transparent color="#888888" size={0.06} sizeAttenuation={true} depthWrite={false} opacity={0.6} />
+      <PointMaterial transparent color={isLightMode ? "#DCDCDF" : "#4A4A52"} size={0.08} sizeAttenuation={true} depthWrite={false} opacity={0.8} />
     </Points>
   );
 }
 
-function GeometricStructure() {
+function GeometricStructure({ isLightMode }: { isLightMode: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   
   useFrame((state, delta) => {
@@ -49,13 +49,13 @@ function GeometricStructure() {
       <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
         <mesh>
           <icosahedronGeometry args={[8, 1]} />
-          <meshBasicMaterial color="#555555" wireframe transparent opacity={0.15} />
+          <meshBasicMaterial color={isLightMode ? "#E0E0E3" : "#3F3F46"} wireframe transparent opacity={0.6} />
         </mesh>
       </Float>
       <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1}>
         <mesh scale={1.2}>
           <icosahedronGeometry args={[10, 2]} />
-          <meshBasicMaterial color="#444444" wireframe transparent opacity={0.1} />
+          <meshBasicMaterial color={isLightMode ? "#E8E8EB" : "#333338"} wireframe transparent opacity={0.4} />
         </mesh>
       </Float>
     </group>
@@ -64,10 +64,10 @@ function GeometricStructure() {
 
 export function Background3D({ isLightMode }: { isLightMode: boolean }) {
   return (
-    <div className={`fixed inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${isLightMode ? 'opacity-50' : 'opacity-100'}`}>
+    <div className={`fixed inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${isLightMode ? 'opacity-80' : 'opacity-100'}`}>
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }} gl={{ antialias: true, alpha: true }}>
-        <GeometricStructure />
-        <ParticleWave />
+        <GeometricStructure isLightMode={isLightMode} />
+        <ParticleWave isLightMode={isLightMode} />
       </Canvas>
       {/* Subtle overlay to blend into the theme */}
       <div className="absolute inset-0 bg-obsidian-bg/40 pointer-events-none transition-colors duration-1000" />
