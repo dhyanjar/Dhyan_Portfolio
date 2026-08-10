@@ -65,7 +65,7 @@ export function Education() {
         </h2>
         
         <div className="relative border-l border-obsidian-border ml-1.5 md:ml-2 pl-8 md:pl-12 flex flex-col gap-12 md:gap-16 max-w-3xl">
-          <div className="edu-item relative cursor-default">
+          <div className="edu-item relative cursor-none">
             {/* Dot */}
             <div className="timeline-dot absolute -left-[37px] md:-left-[53px] top-1.5 w-[11px] h-[11px] border border-obsidian-accent bg-obsidian-bg rounded-full transform origin-center" />
             

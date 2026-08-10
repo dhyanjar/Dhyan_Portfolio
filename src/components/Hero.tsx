@@ -90,7 +90,7 @@ export function Hero() {
           </h1>
 
           <p className="hero-desc font-body text-[16px] md:text-[20px] text-obsidian-muted max-w-xl leading-[1.6]">
-            <SplitText text="Senior Software Engineer & AI Systems Architect. Architecting resilient backend systems and deploying scalable NLP agents." type="word" />
+            <SplitText text="Senior Software Engineer. Designing resilient backend systems and deploying scalable AI solutions." type="word" />
           </p>
 
           <div className="hero-desc mt-10">

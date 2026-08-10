@@ -97,7 +97,7 @@ export function TechStack() {
                 {group.skills.map((item, i) => (
                   <div 
                     key={i} 
-                    className="stack-pill border border-obsidian-border bg-obsidian-surface px-4 py-2 font-mono text-[10px] md:text-[12px] uppercase tracking-widest text-obsidian-accent cursor-default transition-colors"
+                    className="stack-pill border border-obsidian-border bg-obsidian-surface px-4 py-2 font-mono text-[10px] md:text-[12px] uppercase tracking-widest text-obsidian-accent cursor-none transition-colors"
                   >
                     {item}
                   </div>

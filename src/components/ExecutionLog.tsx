@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
 import { SplitText } from './SplitText';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -85,16 +84,15 @@ export function ExecutionLog({ onOpenExperience }: { onOpenExperience: () => voi
           </h2>
           <button 
             onClick={onOpenExperience}
-            className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-obsidian-muted hover:text-obsidian-accent transition-colors self-start md:self-auto cursor-pointer group"
+            className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-obsidian-muted hover:text-obsidian-accent transition-colors self-start md:self-auto cursor-pointer"
           >
             <span>View Full Details</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
         
         <div className="relative border-l border-obsidian-border ml-1.5 md:ml-2 pl-8 md:pl-12 flex flex-col gap-12 md:gap-16 max-w-3xl">
           {logs.map((log, i) => (
-            <div key={i} className="log-item relative cursor-default">
+            <div key={i} className="log-item relative cursor-none">
               {/* Dot */}
               <div className="timeline-dot absolute -left-[37px] md:-left-[53px] top-1.5 w-[11px] h-[11px] border border-obsidian-accent bg-obsidian-bg rounded-full transform origin-center" />
               

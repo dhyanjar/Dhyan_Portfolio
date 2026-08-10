@@ -69,7 +69,7 @@ export function Metrics() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-obsidian-border border border-obsidian-border overflow-hidden">
           {metrics.map((metric, i) => (
-            <div key={i} className="metric-card bg-obsidian-surface p-6 flex flex-col justify-between min-h-[160px] md:min-h-[200px] transition-colors duration-300 group cursor-default">
+            <div key={i} className="metric-card bg-obsidian-surface p-6 flex flex-col justify-between min-h-[160px] md:min-h-[200px] transition-colors duration-300 group cursor-none">
               <span className="font-mono text-[10px] uppercase tracking-widest text-obsidian-muted group-hover:text-obsidian-accent transition-colors">
                 <SplitText text={metric.label} type="word" />
               </span>
