@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Metrics } from './components/Metrics';
@@ -17,12 +18,15 @@ import { CustomCursor } from './components/CustomCursor';
 import { SmoothScroll } from './components/SmoothScroll';
 import { Background3D } from './components/Background3D';
 
-const THEME_STORAGE_KEY = 'dhyan-portfolio-theme';
-
 export default function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isLightMode, setIsLightMode] = useState(() => {
-    return localStorage.getItem(THEME_STORAGE_KEY) !== 'dark';
+  const [isLightMode, setIsLightMode] = useState(false);
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   useEffect(() => {
@@ -31,8 +35,6 @@ export default function App() {
     } else {
       document.documentElement.classList.remove('light');
     }
-
-    localStorage.setItem(THEME_STORAGE_KEY, isLightMode ? 'light' : 'dark');
   }, [isLightMode]);
 
   return (
@@ -41,6 +43,16 @@ export default function App() {
       <div className="relative z-10 flex flex-col min-h-screen">
         <SmoothScroll />
         <CustomCursor />
+        
+        <motion.div
+          className="fixed left-0 right-0 h-1.5 md:h-1 z-[9999] origin-left pointer-events-none"
+          style={{ 
+            scaleX,
+            backgroundColor: isLightMode ? '#000000' : '#ffffff',
+            bottom: 'env(safe-area-inset-bottom, 0px)'
+          }}
+        />
+
         <Navbar 
           onOpenExperience={() => setSidebarOpen(true)} 
           isLightMode={isLightMode}
@@ -62,3 +74,4 @@ export default function App() {
     </div>
   );
 }
+
