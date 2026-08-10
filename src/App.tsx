@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -39,12 +39,15 @@ export default function App() {
     restDelta: 0.001
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isLightMode) {
       document.documentElement.classList.add('light');
     } else {
       document.documentElement.classList.remove('light');
     }
+
+    document.documentElement.style.colorScheme = isLightMode ? 'light' : 'dark';
+    document.documentElement.style.backgroundColor = '';
 
     try {
       localStorage.setItem(THEME_STORAGE_KEY, isLightMode ? 'light' : 'dark');

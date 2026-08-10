@@ -6,20 +6,24 @@
     <title>Dhyan Jariwala | Architect</title>
     <script>
       (function () {
+        var isLightMode = true;
+
         try {
-          if (localStorage.getItem('dhyan-portfolio-theme') !== 'dark') {
-            document.documentElement.classList.add('light');
-          }
+          isLightMode = localStorage.getItem('dhyan-portfolio-theme') !== 'dark';
         } catch (error) {
-          document.documentElement.classList.add('light');
+          isLightMode = true;
         }
+
+        document.documentElement.classList.toggle('light', isLightMode);
+        document.documentElement.style.colorScheme = isLightMode ? 'light' : 'dark';
+        document.documentElement.style.backgroundColor = isLightMode ? '#FAFAFA' : '#050505';
       })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/Dhyan_Portfolio/assets/index-BD_oKPfz.js"></script>
-    <link rel="stylesheet" crossorigin href="/Dhyan_Portfolio/assets/index-DcCxR5iH.css">
+    <script type="module" crossorigin src="/Dhyan_Portfolio/assets/index-DcfWLFe8.js"></script>
+    <link rel="stylesheet" crossorigin href="/Dhyan_Portfolio/assets/index-CL5yaZ16.css">
   </head>
   <body>
     <div id="root"></div>

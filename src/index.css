@@ -36,6 +36,12 @@
   --theme-grid: rgba(0, 0, 0, 0.05);
 }
 
+html,
+body,
+#root {
+  background: var(--theme-bg);
+}
+
 body {
   @apply bg-obsidian-bg text-obsidian-text font-body antialiased selection:bg-obsidian-surface-hover selection:text-obsidian-text;
 }
