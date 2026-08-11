@@ -1,5 +1,5 @@
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -29,13 +29,14 @@ function ParticleWave({ isLightMode }: { isLightMode: boolean }) {
 
   return (
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-      <PointMaterial transparent color={isLightMode ? "#DCDCDF" : "#4A4A52"} size={0.08} sizeAttenuation={true} depthWrite={false} opacity={0.8} />
+      <PointMaterial transparent color={isLightMode ? "#DCDCDF" : "#4A4A52"} size={0.08} sizeAttenuation={true} depthWrite={false} opacity={0.6} />
     </Points>
   );
 }
 
 function GeometricStructure({ isLightMode }: { isLightMode: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
+  const { viewport } = useThree();
   
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -44,8 +45,26 @@ function GeometricStructure({ isLightMode }: { isLightMode: boolean }) {
     }
   });
 
+  const isMobile = viewport.width < 12;
+  
+  // Adjust scale: step it up to 1.2 (between 1.05 and the previous massive 1.4)
+  const scale = isMobile ? 0.6 : 0.9;
+  
+  // The inner mesh has args=[8, 1].
+  const innerRadius = 8 * scale;
+
+  // Mathematically anchor the sphere.
+  // On mobile, we position it mostly on the right half.
+  // On desktop, anchor it slightly further right than before.
+  const xPos = isMobile 
+    ? (viewport.width * 0.3) 
+    : (0.1 * viewport.width) + innerRadius;
+
+  // Shift the sphere downwards to prevent it from clipping the top of the screen
+  const yPos = isMobile ? -1 : -1;
+
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[xPos, yPos, 0]} scale={scale}>
       <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
         <mesh>
           <icosahedronGeometry args={[8, 1]} />
