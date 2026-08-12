@@ -63,18 +63,21 @@ function GeometricStructure({ isLightMode }: { isLightMode: boolean }) {
   // Shift the sphere downwards to prevent it from clipping the top of the screen
   const yPos = isMobile ? -1 : -1;
 
+  const innerColor = isLightMode ? "#E0E0E3" : (isMobile ? "#35353C" : "#3F3F46");
+  const outerColor = isLightMode ? "#E8E8EB" : (isMobile ? "#2D2D34" : "#333338");
+
   return (
     <group ref={groupRef} position={[xPos, yPos, 0]} scale={scale}>
       <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
         <mesh>
           <icosahedronGeometry args={[8, 1]} />
-          <meshBasicMaterial color={isLightMode ? "#E0E0E3" : "#3F3F46"} wireframe transparent opacity={0.6} />
+          <meshBasicMaterial color={innerColor} wireframe transparent opacity={0.6} />
         </mesh>
       </Float>
       <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1}>
         <mesh scale={1.2}>
           <icosahedronGeometry args={[10, 2]} />
-          <meshBasicMaterial color={isLightMode ? "#E8E8EB" : "#333338"} wireframe transparent opacity={0.4} />
+          <meshBasicMaterial color={outerColor} wireframe transparent opacity={0.4} />
         </mesh>
       </Float>
     </group>
