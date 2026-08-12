@@ -57,14 +57,14 @@ function GeometricStructure({ isLightMode }: { isLightMode: boolean }) {
   // On mobile, we position it mostly on the right half.
   // On desktop, anchor it slightly further right than before.
   const xPos = isMobile 
-    ? (viewport.width * 0.3) 
+    ? (viewport.width * 0.35) 
     : (0.1 * viewport.width) + innerRadius;
 
   // Shift the sphere downwards to prevent it from clipping the top of the screen
   const yPos = isMobile ? -1 : -1;
 
-  const innerColor = isLightMode ? "#E0E0E3" : (isMobile ? "#35353C" : "#3F3F46");
-  const outerColor = isLightMode ? "#E8E8EB" : (isMobile ? "#2D2D34" : "#333338");
+  const innerColor = isLightMode ? "#E0E0E3" : (isMobile ? "#2E2E34" : "#3F3F46");
+  const outerColor = isLightMode ? "#E8E8EB" : (isMobile ? "#232328" : "#333338");
 
   return (
     <group ref={groupRef} position={[xPos, yPos, 0]} scale={scale}>
