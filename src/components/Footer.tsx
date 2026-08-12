@@ -63,7 +63,7 @@ export function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-[20px] md:px-[64px] py-8 flex flex-col sm:flex-row items-center justify-between font-mono text-[10px] text-obsidian-muted uppercase tracking-widest gap-4 footer-word-container">
-        <div className="footer-word"><SplitText text="© 2024 Dhyan Jariwala — Engineered for precision" type="word" /></div>
+        <div className="footer-word"><SplitText text="© Dhyan Jariwala — Engineered for precision" type="word" /></div>
         <div className="flex gap-4">
           <a href="https://github.com/dhyanjar98" target="_blank" rel="noopener noreferrer" className="footer-elem hover:text-obsidian-accent transition-colors footer-word"><SplitText text="GitHub" type="word" /></a>
           <a href="https://twitter.com/dhyanjar98" target="_blank" rel="noopener noreferrer" className="footer-elem hover:text-obsidian-accent transition-colors footer-word"><SplitText text="Twitter" type="word" /></a>
